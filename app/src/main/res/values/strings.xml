@@ -1,3 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">QuickNote</string>
+
+    <string name="my_notes">My Notes</string>
+    <string name="loading_notes">Loading notes…</string>
+    <string name="search_notes_placeholder">Search notes…</string>
+    <string name="search">Search</string>
+    <string name="clear_search">Clear search</string>
+    <string name="add_note">Add Note</string>
+
+    <string name="untitled_note">Untitled</string>
+    <string name="no_subtitle_added">No subtitle added</string>
+    <string name="no_content">No content</string>
+    <string name="delete_note">Delete note</string>
+    <string name="note_image">Note image</string>
+    <string name="default_note_letter">N</string>
+
+    <string name="delete_note_title">Delete Note</string>
+    <string name="delete_note_message">Are you sure you want to delete this note? This action cannot be undone.</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="no_notes_found">No notes found</string>
+    <string name="no_notes_yet">No notes yet</string>
+    <string name="try_different_keywords">Try searching with different keywords</string>
+    <string name="tap_to_create_first_note">Tap the + button to create your first note</string>
+
+    <string name="add_note_title">Add Note</string>
+    <string name="back">Back</string>
+    <string name="save_note">Save Note</string>
+    <string name="saving">Saving…</string>
+    <string name="title_placeholder">Title</string>
+    <string name="subtitle_placeholder">Subtitle</string>
+    <string name="description_placeholder">Write your note here…</string>
+
+    <string name="selected_image">Selected image</string>
+    <string name="remove_image">Remove image</string>
+    <string name="add_image">Add Image</string>
+    <string name="tap_to_select_gallery">Tap to select from gallery</string>
+
+    <string name="grant_permission">Grant Permission</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="permission_snackbar_message">Gallery permission is needed to add images to notes</string>
+    <string name="permission_change_image_message">Gallery permission is needed to change images</string>
+    <string name="gallery_permission_title">Gallery Permission Required</string>
+    <string name="gallery_permission_message">To add images to your notes, please grant permission to access your gallery.</string>
+    <string name="gallery_permission_change_message">To change images in your notes, please grant permission to access your gallery.</string>
+
+    <string name="edit_note_title">Edit Note</string>
+    <string name="loading_note">Loading note…</string>
+    <string name="update_note">Update Note</string>
+    <string name="updating">Updating…</string>
+    <string name="change_image">Change image</string>
+    <string name="unsaved_changes_warning">You have unsaved changes</string>
+
+    <string name="unsaved_changes_title">Unsaved Changes</string>
+    <string name="unsaved_changes_message">You have unsaved changes. Are you sure you want to leave without saving?</string>
+    <string name="leave">Leave</string>
+    <string name="stay">Stay</string>
+
+    <string name="error_invalid_note_id">Invalid note ID</string>
+    <string name="error_load_note">Could not load note: %1$s</string>
+    <string name="error_update_note">Failed to update note: %1$s</string>
+    <string name="error_delete_note_not_found">Cannot delete note: Note not found</string>
+    <string name="error_delete_note">Failed to delete note: %1$s</string>
+
+    <string name="error_empty_note">Please write something in title or description</string>
+    <string name="error_save_note">Failed to save note: %1$s</string>
 </resources>

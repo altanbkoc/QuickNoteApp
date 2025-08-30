@@ -1,7 +1,9 @@
 package com.altankoc.quicknote.ui.screens.add_note
 
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.altankoc.quicknote.R
 import com.altankoc.quicknote.domain.model.Note
 import com.altankoc.quicknote.domain.usecase.InsertNoteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +16,8 @@ import java.util.UUID
 
 @HiltViewModel
 class AddNoteViewModel @Inject constructor(
-    private val insertNoteUseCase: InsertNoteUseCase
+    private val insertNoteUseCase: InsertNoteUseCase,
+    private val application: Application
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(AddNoteState())
@@ -53,7 +56,7 @@ class AddNoteViewModel @Inject constructor(
 
         if (currentState.title.isBlank() && currentState.description.isBlank()) {
             _state.value = _state.value.copy(
-                error = "Please write something in title or description"
+                error = application.getString(R.string.error_empty_note)
             )
             return
         }
@@ -81,7 +84,7 @@ class AddNoteViewModel @Inject constructor(
             } catch (e: Exception) {
                 _state.value = _state.value.copy(
                     isSaving = false,
-                    error = "Failed to save note: ${e.message}"
+                    error = application.getString(R.string.error_save_note, e.message ?: "")
                 )
                 e.printStackTrace()
             }

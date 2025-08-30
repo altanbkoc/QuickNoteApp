@@ -1,8 +1,10 @@
 package com.altankoc.quicknote.ui.screens.edit_note
 
+import android.app.Application
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.altankoc.quicknote.R
 import com.altankoc.quicknote.domain.model.Note
 import com.altankoc.quicknote.domain.usecase.DeleteNoteUseCase
 import com.altankoc.quicknote.domain.usecase.GetNoteByIdUseCase
@@ -19,6 +21,7 @@ class EditNoteViewModel @Inject constructor(
     private val updateNoteUseCase: UpdateNoteUseCase,
     private val deleteNoteUseCase: DeleteNoteUseCase,
     private val getNoteByIdUseCase: GetNoteByIdUseCase,
+    private val application: Application,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -32,7 +35,7 @@ class EditNoteViewModel @Inject constructor(
             loadNote()
         } else {
             _state.value = _state.value.copy(
-                error = "Invalid note ID"
+                error = application.getString(R.string.error_invalid_note_id)
             )
         }
     }
@@ -101,7 +104,7 @@ class EditNoteViewModel @Inject constructor(
             } catch (e: Exception) {
                 _state.value = _state.value.copy(
                     isLoading = false,
-                    error = "Could not load note: ${e.message}"
+                    error = application.getString(R.string.error_load_note, e.message ?: "")
                 )
                 e.printStackTrace()
             }
@@ -113,7 +116,7 @@ class EditNoteViewModel @Inject constructor(
 
         if (currentState.title.isBlank() && currentState.description.isBlank()) {
             _state.value = _state.value.copy(
-                error = "Please write something in title or description"
+                error = application.getString(R.string.error_empty_note)
             )
             return
         }
@@ -143,7 +146,7 @@ class EditNoteViewModel @Inject constructor(
             } catch (e: Exception) {
                 _state.value = _state.value.copy(
                     isSaving = false,
-                    error = "Failed to update note: ${e.message}"
+                    error = application.getString(R.string.error_update_note, e.message ?: "")
                 )
                 e.printStackTrace()
             }
@@ -165,14 +168,14 @@ class EditNoteViewModel @Inject constructor(
                 } ?: run {
                     _state.value = _state.value.copy(
                         isDeleting = false,
-                        error = "Cannot delete note: Note not found"
+                        error = application.getString(R.string.error_delete_note_not_found)
                     )
                 }
 
             } catch (e: Exception) {
                 _state.value = _state.value.copy(
                     isDeleting = false,
-                    error = "Failed to delete note: ${e.message}"
+                    error = application.getString(R.string.error_delete_note, e.message ?: "")
                 )
                 e.printStackTrace()
             }

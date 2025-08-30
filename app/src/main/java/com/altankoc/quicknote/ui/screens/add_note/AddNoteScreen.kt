@@ -19,11 +19,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
+import com.altankoc.quicknote.R
 import com.altankoc.quicknote.util.ImagePicker
 import com.altankoc.quicknote.util.rememberImagePermissionState
 import com.altankoc.quicknote.util.rememberImagePickerLauncher
@@ -65,7 +67,7 @@ fun AddNoteScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = "Add Note",
+                        text = stringResource(R.string.add_note_title),
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold
                     )
@@ -74,7 +76,7 @@ fun AddNoteScreen(
                     IconButton(onClick = onNavigateBack) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Back",
+                            contentDescription = stringResource(R.string.back),
                             tint = MaterialTheme.colorScheme.onSurface
                         )
                     }
@@ -95,7 +97,7 @@ fun AddNoteScreen(
                         } else {
                             Icon(
                                 imageVector = Icons.Default.Check,
-                                contentDescription = "Save Note",
+                                contentDescription = stringResource(R.string.save_note),
                                 tint = if (state.canSave()) {
                                     MaterialTheme.colorScheme.primary
                                 } else {
@@ -136,7 +138,7 @@ fun AddNoteScreen(
                 NoteTextField(
                     value = state.title,
                     onValueChange = { viewModel.onEvent(AddNoteEvent.TitleChanged(it)) },
-                    placeholder = "Title",
+                    placeholder = stringResource(R.string.title_placeholder),
                     textStyle = MaterialTheme.typography.titleLarge.copy(
                         fontWeight = FontWeight.Bold
                     ),
@@ -146,7 +148,7 @@ fun AddNoteScreen(
                 NoteTextField(
                     value = state.subtitle,
                     onValueChange = { viewModel.onEvent(AddNoteEvent.SubtitleChanged(it)) },
-                    placeholder = "Subtitle",
+                    placeholder = stringResource(R.string.subtitle_placeholder),
                     textStyle = MaterialTheme.typography.titleMedium,
                     singleLine = true
                 )
@@ -154,7 +156,7 @@ fun AddNoteScreen(
                 NoteTextField(
                     value = state.description,
                     onValueChange = { viewModel.onEvent(AddNoteEvent.DescriptionChanged(it)) },
-                    placeholder = "Write your note here...",
+                    placeholder = stringResource(R.string.description_placeholder),
                     textStyle = MaterialTheme.typography.bodyLarge,
                     singleLine = false,
                     modifier = Modifier.weight(1f)
@@ -198,11 +200,11 @@ fun AddNoteScreen(
                                 color = MaterialTheme.colorScheme.onPrimary
                             )
                             Spacer(modifier = Modifier.width(8.dp))
-                            Text("Saving...")
+                            Text(stringResource(R.string.saving))
                         }
                     } else {
                         Text(
-                            text = "Save Note",
+                            text = stringResource(R.string.save_note),
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold
                         )
@@ -223,18 +225,18 @@ fun AddNoteScreen(
                             showPermissionSnackbar = false
                         }
                     ) {
-                        Text("Grant Permission")
+                        Text(stringResource(R.string.grant_permission))
                     }
                 },
                 dismissAction = {
                     TextButton(
                         onClick = { showPermissionSnackbar = false }
                     ) {
-                        Text("Dismiss")
+                        Text(stringResource(R.string.dismiss))
                     }
                 }
             ) {
-                Text("Gallery permission is needed to add images to notes")
+                Text(stringResource(R.string.permission_snackbar_message))
             }
         }
     }
@@ -244,25 +246,25 @@ fun AddNoteScreen(
             onDismissRequest = imagePermissionState.onRationaleDismissed,
             title = {
                 Text(
-                    text = "Gallery Permission Required",
+                    text = stringResource(R.string.gallery_permission_title),
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold
                 )
             },
             text = {
                 Text(
-                    text = "To add images to your notes, please grant permission to access your gallery.",
+                    text = stringResource(R.string.gallery_permission_message),
                     style = MaterialTheme.typography.bodyMedium
                 )
             },
             confirmButton = {
                 TextButton(onClick = imagePermissionState.onRationaleDismissed) {
-                    Text("Grant Permission")
+                    Text(stringResource(R.string.grant_permission))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { imagePermissionState.onRationaleDismissed }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.cancel))
                 }
             }
         )
@@ -298,7 +300,7 @@ fun ImagePickerSection(
             ) {
                 AsyncImage(
                     model = File(imagePath),
-                    contentDescription = "Selected image",
+                    contentDescription = stringResource(R.string.selected_image),
                     modifier = Modifier
                         .fillMaxSize()
                         .clip(RoundedCornerShape(12.dp)),
@@ -317,7 +319,7 @@ fun ImagePickerSection(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Close,
-                        contentDescription = "Remove image",
+                        contentDescription = stringResource(R.string.remove_image),
                         tint = MaterialTheme.colorScheme.error
                     )
                 }
@@ -341,19 +343,19 @@ fun ImagePickerSection(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Image,
-                        contentDescription = "Add image",
+                        contentDescription = stringResource(R.string.add_image),
                         modifier = Modifier.size(48.dp),
                         tint = MaterialTheme.colorScheme.primary
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "Add Image",
+                        text = stringResource(R.string.add_image),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.primary,
                         fontWeight = FontWeight.Medium
                     )
                     Text(
-                        text = "Tap to select from gallery",
+                        text = stringResource(R.string.tap_to_select_gallery),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                     )

@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -30,6 +31,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.altankoc.quicknote.domain.model.Note
 import com.altankoc.quicknote.util.ImagePicker
+import com.altankoc.quicknote.R
 import java.io.File
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -50,7 +52,7 @@ fun NoteListScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = "My Notes",
+                        text = stringResource(R.string.my_notes),
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold
                     )
@@ -85,7 +87,7 @@ fun NoteListScreen(
                             )
                             Spacer(modifier = Modifier.height(16.dp))
                             Text(
-                                text = "Loading notes...",
+                                text = stringResource(R.string.loading_notes),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
                             )
@@ -131,7 +133,7 @@ fun NoteListScreen(
         ) {
             Icon(
                 imageVector = Icons.Default.Add,
-                contentDescription = "Add Note",
+                contentDescription = stringResource(R.string.add_note),
                 tint = MaterialTheme.colorScheme.onPrimary
             )
         }
@@ -158,14 +160,14 @@ fun SearchBar(
             onValueChange = onSearchTextChange,
             placeholder = {
                 Text(
-                    text = "Search notes...",
+                    text = stringResource(R.string.search_notes_placeholder),
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                 )
             },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Search,
-                    contentDescription = "Search",
+                    contentDescription = stringResource(R.string.search),
                     tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                 )
             },
@@ -174,7 +176,7 @@ fun SearchBar(
                     IconButton(onClick = onClearClick) {
                         Icon(
                             imageVector = Icons.Default.Clear,
-                            contentDescription = "Clear search",
+                            contentDescription = stringResource(R.string.clear_search),
                             tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                         )
                     }
@@ -239,7 +241,7 @@ fun NoteCard(
                     modifier = Modifier.weight(1f)
                 ) {
                     Text(
-                        text = if (note.title.isNotBlank()) note.title else "Untitled",
+                        text = if (note.title.isNotBlank()) note.title else stringResource(R.string.untitled_note),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface,
@@ -250,7 +252,7 @@ fun NoteCard(
                     Spacer(modifier = Modifier.height(4.dp))
 
                     Text(
-                        text = if (note.subtitle.isNotBlank()) note.subtitle else "No subtitle added",
+                        text = if (note.subtitle.isNotBlank()) note.subtitle else stringResource(R.string.no_subtitle_added),
                         style = MaterialTheme.typography.bodyMedium,
                         color = if (note.subtitle.isNotBlank()) {
                             MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
@@ -264,7 +266,7 @@ fun NoteCard(
                     Spacer(modifier = Modifier.height(8.dp))
 
                     Text(
-                        text = if (note.description.isNotBlank()) note.description else "No content",
+                        text = if (note.description.isNotBlank()) note.description else stringResource(R.string.no_content),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
                         maxLines = 2,
@@ -286,7 +288,7 @@ fun NoteCard(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Delete,
-                        contentDescription = "Delete note",
+                        contentDescription = stringResource(R.string.delete_note),
                         tint = MaterialTheme.colorScheme.error,
                         modifier = Modifier.size(20.dp)
                     )
@@ -300,14 +302,14 @@ fun NoteCard(
             onDismissRequest = { showDeleteDialog = false },
             title = {
                 Text(
-                    text = "Delete Note",
+                    text = stringResource(R.string.delete_note_title),
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold
                 )
             },
             text = {
                 Text(
-                    text = "Are you sure you want to delete this note? This action cannot be undone.",
+                    text = stringResource(R.string.delete_note_message),
                     style = MaterialTheme.typography.bodyMedium
                 )
             },
@@ -322,14 +324,14 @@ fun NoteCard(
                         contentColor = MaterialTheme.colorScheme.error
                     )
                 ) {
-                    Text("Delete")
+                    Text(stringResource(R.string.delete))
                 }
             },
             dismissButton = {
                 TextButton(
                     onClick = { showDeleteDialog = false }
                 ) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.cancel))
                 }
             }
         )
@@ -352,7 +354,7 @@ fun NoteAvatar(
 
             AsyncImage(
                 model = File(imagePath),
-                contentDescription = "Note image",
+                contentDescription = stringResource(R.string.note_image),
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop
             )
@@ -360,7 +362,7 @@ fun NoteAvatar(
             val firstLetter = if (title.isNotBlank()) {
                 title.first().uppercaseChar().toString()
             } else {
-                "N"
+                stringResource(R.string.default_note_letter)
             }
 
             Text(
@@ -389,7 +391,7 @@ fun EmptyNotesView(
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = if (isSearching) "No notes found" else "No notes yet",
+                text = stringResource(if (isSearching) R.string.no_notes_found else R.string.no_notes_yet),
                 style = MaterialTheme.typography.headlineSmall,
                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
                 fontWeight = FontWeight.Medium
@@ -398,11 +400,7 @@ fun EmptyNotesView(
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = if (isSearching) {
-                    "Try searching with different keywords"
-                } else {
-                    "Tap the + button to create your first note"
-                },
+                text = stringResource(if (isSearching) R.string.try_different_keywords else R.string.tap_to_create_first_note),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f)
             )

@@ -21,11 +21,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
+import com.altankoc.quicknote.R
 import com.altankoc.quicknote.util.ImagePicker
 import com.altankoc.quicknote.util.rememberImagePermissionState
 import com.altankoc.quicknote.util.rememberImagePickerLauncher
@@ -80,7 +82,7 @@ fun EditNoteScreen(
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = "Loading note...",
+                        text = stringResource(R.string.loading_note),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
                     )
@@ -98,7 +100,7 @@ fun EditNoteScreen(
                     TopAppBar(
                         title = {
                             Text(
-                                text = "Edit Note",
+                                text = stringResource(R.string.edit_note_title),
                                 style = MaterialTheme.typography.titleLarge,
                                 fontWeight = FontWeight.Bold
                             )
@@ -115,7 +117,7 @@ fun EditNoteScreen(
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.ArrowBack,
-                                    contentDescription = "Back",
+                                    contentDescription = stringResource(R.string.back),
                                     tint = MaterialTheme.colorScheme.onSurface
                                 )
                             }
@@ -133,7 +135,7 @@ fun EditNoteScreen(
                                 } else {
                                     Icon(
                                         imageVector = Icons.Default.Delete,
-                                        contentDescription = "Delete Note",
+                                        contentDescription = stringResource(R.string.delete_note),
                                         tint = MaterialTheme.colorScheme.error
                                     )
                                 }
@@ -154,7 +156,7 @@ fun EditNoteScreen(
                                 } else {
                                     Icon(
                                         imageVector = Icons.Default.Check,
-                                        contentDescription = "Update Note",
+                                        contentDescription = stringResource(R.string.update_note),
                                         tint = if (state.canSave() && viewModel.hasUnsavedChanges()) {
                                             MaterialTheme.colorScheme.primary
                                         } else {
@@ -195,7 +197,7 @@ fun EditNoteScreen(
                         NoteTextField(
                             value = state.title,
                             onValueChange = { viewModel.onEvent(EditNoteEvent.TitleChanged(it)) },
-                            placeholder = "Title",
+                            placeholder = stringResource(R.string.title_placeholder),
                             textStyle = MaterialTheme.typography.titleLarge.copy(
                                 fontWeight = FontWeight.Bold
                             ),
@@ -205,7 +207,7 @@ fun EditNoteScreen(
                         NoteTextField(
                             value = state.subtitle,
                             onValueChange = { viewModel.onEvent(EditNoteEvent.SubtitleChanged(it)) },
-                            placeholder = "Subtitle",
+                            placeholder = stringResource(R.string.subtitle_placeholder),
                             textStyle = MaterialTheme.typography.titleMedium,
                             singleLine = true
                         )
@@ -213,7 +215,7 @@ fun EditNoteScreen(
                         NoteTextField(
                             value = state.description,
                             onValueChange = { viewModel.onEvent(EditNoteEvent.DescriptionChanged(it)) },
-                            placeholder = "Write your note here...",
+                            placeholder = stringResource(R.string.description_placeholder),
                             textStyle = MaterialTheme.typography.bodyLarge,
                             singleLine = false,
                             modifier = Modifier.weight(1f)
@@ -245,7 +247,7 @@ fun EditNoteScreen(
                                 shape = RoundedCornerShape(8.dp)
                             ) {
                                 Text(
-                                    text = "You have unsaved changes",
+                                    text = stringResource(R.string.unsaved_changes_warning),
                                     modifier = Modifier.padding(12.dp),
                                     style = MaterialTheme.typography.bodyMedium,
                                     color = MaterialTheme.colorScheme.onSecondaryContainer
@@ -278,11 +280,11 @@ fun EditNoteScreen(
                                             color = MaterialTheme.colorScheme.onPrimary
                                         )
                                         Spacer(modifier = Modifier.width(8.dp))
-                                        Text("Updating...")
+                                        Text(stringResource(R.string.updating))
                                     }
                                 } else {
                                     Text(
-                                        text = "Update Note",
+                                        text = stringResource(R.string.update_note),
                                         style = MaterialTheme.typography.titleMedium,
                                         fontWeight = FontWeight.Bold
                                     )
@@ -308,7 +310,7 @@ fun EditNoteScreen(
                                     )
                                 } else {
                                     Text(
-                                        text = "Delete",
+                                        text = stringResource(R.string.delete),
                                         style = MaterialTheme.typography.titleMedium,
                                         fontWeight = FontWeight.Bold
                                     )
@@ -330,18 +332,18 @@ fun EditNoteScreen(
                                     showPermissionSnackbar = false
                                 }
                             ) {
-                                Text("Grant Permission")
+                                Text(stringResource(R.string.grant_permission))
                             }
                         },
                         dismissAction = {
                             TextButton(
                                 onClick = { showPermissionSnackbar = false }
                             ) {
-                                Text("Dismiss")
+                                Text(stringResource(R.string.dismiss))
                             }
                         }
                     ) {
-                        Text("Gallery permission is needed to change images")
+                        Text(stringResource(R.string.permission_change_image_message))
                     }
                 }
             }
@@ -353,14 +355,14 @@ fun EditNoteScreen(
             onDismissRequest = { showDeleteDialog = false },
             title = {
                 Text(
-                    text = "Delete Note",
+                    text = stringResource(R.string.delete_note_title),
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold
                 )
             },
             text = {
                 Text(
-                    text = "Are you sure you want to delete this note? This action cannot be undone.",
+                    text = stringResource(R.string.delete_note_message),
                     style = MaterialTheme.typography.bodyMedium
                 )
             },
@@ -374,14 +376,14 @@ fun EditNoteScreen(
                         contentColor = MaterialTheme.colorScheme.error
                     )
                 ) {
-                    Text("Delete")
+                    Text(stringResource(R.string.delete))
                 }
             },
             dismissButton = {
                 TextButton(
                     onClick = { showDeleteDialog = false }
                 ) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.cancel))
                 }
             }
         )
@@ -392,14 +394,14 @@ fun EditNoteScreen(
             onDismissRequest = { showUnsavedChangesDialog = false },
             title = {
                 Text(
-                    text = "Unsaved Changes",
+                    text = stringResource(R.string.unsaved_changes_title),
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold
                 )
             },
             text = {
                 Text(
-                    text = "You have unsaved changes. Are you sure you want to leave without saving?",
+                    text = stringResource(R.string.unsaved_changes_message),
                     style = MaterialTheme.typography.bodyMedium
                 )
             },
@@ -413,14 +415,14 @@ fun EditNoteScreen(
                         contentColor = MaterialTheme.colorScheme.error
                     )
                 ) {
-                    Text("Leave")
+                    Text(stringResource(R.string.leave))
                 }
             },
             dismissButton = {
                 TextButton(
                     onClick = { showUnsavedChangesDialog = false }
                 ) {
-                    Text("Stay")
+                    Text(stringResource(R.string.stay))
                 }
             }
         )
@@ -431,25 +433,25 @@ fun EditNoteScreen(
             onDismissRequest = imagePermissionState.onRationaleDismissed,
             title = {
                 Text(
-                    text = "Gallery Permission Required",
+                    text = stringResource(R.string.gallery_permission_title),
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold
                 )
             },
             text = {
                 Text(
-                    text = "To change images in your notes, please grant permission to access your gallery.",
+                    text = stringResource(R.string.gallery_permission_change_message),
                     style = MaterialTheme.typography.bodyMedium
                 )
             },
             confirmButton = {
                 TextButton(onClick = imagePermissionState.onRationaleDismissed) {
-                    Text("Grant Permission")
+                    Text(stringResource(R.string.grant_permission))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { imagePermissionState.onRationaleDismissed }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.cancel))
                 }
             }
         )
@@ -485,7 +487,7 @@ fun ImageEditSection(
             ) {
                 AsyncImage(
                     model = File(imagePath),
-                    contentDescription = "Note image",
+                    contentDescription = stringResource(R.string.note_image),
                     modifier = Modifier
                         .fillMaxSize()
                         .clip(RoundedCornerShape(12.dp)),
@@ -508,7 +510,7 @@ fun ImageEditSection(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Image,
-                            contentDescription = "Change image",
+                            contentDescription = stringResource(R.string.change_image),
                             tint = MaterialTheme.colorScheme.primary
                         )
                     }
@@ -523,7 +525,7 @@ fun ImageEditSection(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Close,
-                            contentDescription = "Remove image",
+                            contentDescription = stringResource(R.string.remove_image),
                             tint = MaterialTheme.colorScheme.error
                         )
                     }
@@ -548,19 +550,19 @@ fun ImageEditSection(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Image,
-                        contentDescription = "Add image",
+                        contentDescription = stringResource(R.string.add_image),
                         modifier = Modifier.size(48.dp),
                         tint = MaterialTheme.colorScheme.primary
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "Add Image",
+                        text = stringResource(R.string.add_image),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.primary,
                         fontWeight = FontWeight.Medium
                     )
                     Text(
-                        text = "Tap to select from gallery",
+                        text = stringResource(R.string.tap_to_select_gallery),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                     )
