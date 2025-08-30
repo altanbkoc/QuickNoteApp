@@ -1,8 +1,10 @@
 # QuickNote 📝
 
-**QuickNote** is a modern Android note-taking application that combines simplicity with powerful features. Built with cutting-edge Android development technologies, it offers users an intuitive way to create, organize, and manage their thoughts with support for rich media content.
+**QuickNote** is a modern Android note-taking application that combines simplicity with powerful features. Built with cutting-edge Android development technologies, it offers users an intuitive way to create, organize, and manage their thoughts with support for rich media content and multilingual interface.
 
 ## 📸 Screenshots
+
+![QuickNote App Screenshot 3](screenshots/screenshot3.png)
 
 ![QuickNote App Screenshot 2](screenshots/screenshot2.png)
 
@@ -14,6 +16,8 @@
 * 🖼️ **Image Support**: Add images to your notes with gallery integration and permission handling
 * 🔍 **Smart Search**: Quickly find notes by searching through titles and subtitles
 * 🎭 **Avatar System**: Visual note identification with image thumbnails or title initials
+* 🌍 **Multilingual Support**: Full Turkish and English localization with automatic language detection
+* 🎬 **Animated Splash Screen**: Beautiful Lottie animation on app startup
 * 📱 **Modern UI**: Clean, intuitive interface built with Jetpack Compose and Material Design 3
 * 🌙 **Adaptive Theming**: Beautiful color schemes that adapt to your device settings
 * 💾 **Local Storage**: Secure offline storage with Room database
@@ -28,6 +32,16 @@
 * **Coroutines + Flow** - Asynchronous programming and reactive streams
 * **Navigation Compose** - Type-safe navigation
 * **Material Design 3** - Latest Material Design components
+* **Lottie** - Smooth vector animations for enhanced user experience
+
+## 🌍 Internationalization
+
+The app supports multiple languages with complete localization:
+
+* **Turkish** - Full interface translation
+* **English** - Default language
+* **Automatic Detection** - Uses device language preference
+* **String Resources** - All UI text properly externalized for easy translation
 
 ## 🏗️ Architecture
 
@@ -43,6 +57,7 @@ The app follows **Clean Architecture** principles with three main layers:
 * ➕ **Add Note Screen** - Create new notes with text and image content
 * ✏️ **Edit Note Screen** - Modify existing notes with full CRUD operations
 * 🖼️ **Image Picker** - Gallery integration with permission handling
+* 🎬 **Splash Screen** - Animated app introduction with Lottie animations
 
 ## 🎨 Key Components
 
@@ -51,6 +66,7 @@ The app follows **Clean Architecture** principles with three main layers:
 * **Permission System** - Graceful handling of gallery permissions with user-friendly prompts
 * **Search Engine** - Real-time search through note titles and subtitles
 * **Avatar Generator** - Dynamic visual representations for notes
+* **Localization System** - Complete multilingual support with string resources
 
 ## 🔧 Getting Started
 
@@ -70,6 +86,7 @@ The app follows **Clean Architecture** principles with three main layers:
 **Core**: Jetpack Compose, Material 3, Activity Compose, Navigation Compose  
 **Architecture**: Dagger Hilt, ViewModel, Lifecycle Components, Room Database  
 **Media**: Gallery Access, Image File Management  
+**Animation**: Lottie Compose for smooth vector animations  
 **Async**: Kotlin Coroutines, Flow  
 **UI**: Material Icons Extended, Accompanist Permissions  
 
@@ -87,6 +104,7 @@ The app requires the following permissions for full functionality:
 * **Image Optimization** - Smart caching and memory management
 * **Database Optimization** - Indexed queries and efficient relationships
 * **State Management** - Optimized recomposition with stable state holders
+* **Animation Performance** - Smooth Lottie animations with minimal impact
 
 ## 🤝 Contributing
 
